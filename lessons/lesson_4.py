@@ -1,6 +1,7 @@
 import cv2 as cv
 from assets import assets
 import sys
+import image_help
 
 
 def annotate_line():
@@ -9,13 +10,9 @@ def annotate_line():
 
     image_copy = image.copy()
     A, B = (200, 80), (450, 80)  # From: (X, Y) To: (X, Y)
-    cv.line(image_copy, A, B, (0, 255, 255), thickness=3)
+    cv.line(image_copy, A, B, (0, 255, 255), thickness=10)
 
-    cv.imshow('Line', image_copy)
-
-    cv.waitKey()
-    cv.destroyAllWindows()
-    sys.exit("Finished!")
+    image_help.display_image('Line', image_copy, 2000)
 
 
 def annotate_circle():
@@ -27,11 +24,7 @@ def annotate_circle():
     cv.circle(image_copy, circle_center, radius=200, color=(0, 255, 255), thickness=6)
     # -1 thickness fills the circle
 
-    cv.imshow('Circle', image_copy)
-
-    cv.waitKey()
-    cv.destroyAllWindows()
-    sys.exit("Finished!")
+    image_help.display_image('Circle', image_copy, 2000)
 
 
 def annotate_square():
@@ -45,11 +38,7 @@ def annotate_square():
     cv.rectangle(image_copy, (left, top), (right, bottom), (0, 255, 0), thickness=6, lineType=cv.LINE_8)
     # -1 thickness fills the square
 
-    cv.imshow('Square', image_copy)
-
-    cv.waitKey()
-    cv.destroyAllWindows()
-    sys.exit("Finished!")
+    image_help.display_image('Square', image_copy, 2000)
 
 
 def annotate_text():
@@ -62,11 +51,7 @@ def annotate_text():
     cv.putText(image_copy, text, position, fontFace=cv.FONT_HERSHEY_COMPLEX,
                fontScale=1.7, color=(0, 255, 0), thickness=2)
 
-    cv.imshow('Text Image', image_copy)
-
-    cv.waitKey()
-    cv.destroyAllWindows()
-    sys.exit("Finished!")
+    image_help.display_image('Text', image_copy, 2000)
 
 
 # T
@@ -87,13 +72,13 @@ def annotate_text_square():
     cv.putText(image_copy, text, position, fontFace=cv.FONT_HERSHEY_COMPLEX,
                fontScale=1.4, color=(0, 255, 0), thickness=2)
 
-    cv.imshow('Text Square Image', image_copy)
-    cv.imwrite('output.png', image_copy)
-
-    cv.waitKey()
-    cv.destroyAllWindows()
-    sys.exit("Finished!")
+    image_help.display_image('Text Square', image_copy, 2000)
 
 
 if __name__ == '__main__':
+    annotate_line()
+    annotate_text()
+    annotate_circle()
+    annotate_square()
     annotate_text_square()
+    sys.exit("Finished!")
